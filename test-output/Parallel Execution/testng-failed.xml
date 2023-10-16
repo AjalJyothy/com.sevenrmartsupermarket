@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="8" name="Failed suite [Parallel Execution]" guice-stage="DEVELOPMENT">
+  <test name="Smoke testing(failed)">
+    <classes>
+      <class name="com.sevenrmartsupermarket.tests.PushNotificationTest">
+        <methods>
+          <include name="verifyPushNotificationClickSuccessMessage"/>
+          <include name="endSession"/>
+          <include name="launchBrowser"/>
+        </methods>
+      </class> <!-- com.sevenrmartsupermarket.tests.PushNotificationTest -->
+    </classes>
+  </test> <!-- Smoke testing(failed) -->
+</suite> <!-- Failed suite [Parallel Execution] -->
