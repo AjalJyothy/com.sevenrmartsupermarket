@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="8" parallel="tests" name="Failed suite [Cross Browser Testing]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="com.sevenrmartsupermarket.listeners.ExtentReporter"/>
+  </listeners>
+  <test parallel="tests" name="Running in FireFox(failed)">
+    <classes>
+      <class name="com.sevenrmartsupermarket.tests.PushNotificationTest">
+        <methods>
+          <include name="verifyPushNotificationClickSuccessMessage"/>
+          <include name="endSession"/>
+          <include name="launchBrowser"/>
+        </methods>
+      </class> <!-- com.sevenrmartsupermarket.tests.PushNotificationTest -->
+    </classes>
+  </test> <!-- Running in FireFox(failed) -->
+</suite> <!-- Failed suite [Cross Browser Testing] -->
