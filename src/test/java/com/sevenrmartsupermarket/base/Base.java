@@ -84,6 +84,6 @@ public class Base {
 		if (itestresult.getStatus() == ITestResult.FAILURE) {
 			screenshot.takeScreenshot(driver, itestresult.getName());
 		}
-		driver.quit();
+		//driver.quit();
 	}
 }

@@ -33,5 +33,9 @@ public class WaitUtility {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitTime));
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
 	}
+	public void ImplicitWait()
+	{
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT));
+	}
 
 }

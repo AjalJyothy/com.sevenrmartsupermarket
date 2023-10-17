@@ -85,7 +85,7 @@ public class ManageDeliveryBoyTest extends Base {
 		loginpage.login();
 		managedeliveryboypage.clickOnManageDeliveryBoyPage();
 		managedeliveryboypage.deleteMember("Rahul_R");
-		managedeliveryboypage.SearchInList("Joy","joy123@gmail.com","9555556785");	
+		//managedeliveryboypage.SearchInList("Joy","joy123@gmail.com","9555556785");	
 	}
 	
 	

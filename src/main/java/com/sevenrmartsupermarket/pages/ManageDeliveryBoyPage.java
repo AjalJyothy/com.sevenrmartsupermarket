@@ -220,7 +220,7 @@ public class ManageDeliveryBoyPage {
 		}
 		System.out.println(index);
 		WebElement deleteButton=driver.findElement(By.xpath("(//table[@class='table table-bordered table-hover table-sm']//tbody//tr["+index+"]//td[8]//i)[2]"));
-		deleteButton.click();
+		pageutility.scrollAndClick(deleteButton);
 		pageutility.acceptAlert();
 	}
 }
