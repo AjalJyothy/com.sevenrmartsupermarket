@@ -26,12 +26,8 @@ public class ManageOrdersPage {
 	@FindBy(xpath = "//i[@class='nav-icon fas fa-shopping-basket']")
 	private WebElement manageOrdersPageLink;
 	@FindBy(xpath = "//table[@class='table table-bordered table-hover table-sm']//tbody//tr//td[1]")
-	private List<WebElement> orderIDList;
-	@FindBy(xpath = "(//select[@class='form-control'])[1]")
-	private WebElement statusSelectDropDown;
-	@FindBy(xpath = "//button[@name='Update_st']")
-	private WebElement updateStatusButton;
-	
+	private List<WebElement> orderIDList;	
+	int index = 0;
 
 	public ManageOrdersPage(WebDriver driver) {
 		this.driver = driver;
@@ -43,7 +39,7 @@ public class ManageOrdersPage {
 	}
 
 	public void changeOrderStatus(String orderID,String status) {
-		int index = 0;
+	
 		generalutility = new GeneralUtility();
 		pageutiliy=new PageUtility(driver);
 		waitutility=new WaitUtility(driver);
@@ -55,17 +51,32 @@ public class ManageOrdersPage {
 				break;
 			}index++;
 		}
+		this.index=index;
 		WebElement changeStatusButton=driver.findElement(By.xpath("//table[@class='table table-bordered table-hover table-sm']//tbody//tr["+index+"]//td[6]//a[contains(text(),'Change Status')]"));
 		pageutiliy.scrollAndClick(changeStatusButton);
-		waitutility.ImplicitWait();
-		pageutiliy.select_ByVisibleText(statusSelectDropDown,status);
+		WebElement statusDropDown=driver.findElement(By.xpath("//select[@onchange='show_cancel("+orderID+")']"));
+		pageutiliy.select_ByVisibleText(statusDropDown, status);
+		/*
+		if(index==1)
+		{
+			index=1;
+		}
+		else
+		{
+			index=index+6;
+		}
+		System.out.println(index);
+		WebElement updateStatusButton=driver.findElement(By.xpath("(//button[@name='Update_st'])["+index+"]"));
+		waitutility.waitForElementToBeClickable(updateStatusButton, 10);
 		updateStatusButton.click();
-		
+		*/
 		
 	}
 
-	public void statusUpdate() {
-
+	public String statusUpdateCheck() {
+		generalutility=new GeneralUtility();
+		WebElement updatedMessage=driver.findElement(By.xpath("(//table[@class='table table-bordered table-hover table-sm']//tbody//tr[\"+index+\"]//td[6]//span[@style='text-transform: uppercase;'])["+index+"]")); 
+		return generalutility.getTextOffElement(updatedMessage);
 	}
 
 }

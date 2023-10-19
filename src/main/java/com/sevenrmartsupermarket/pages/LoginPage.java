@@ -14,16 +14,16 @@ public class LoginPage {
 	WebDriver driver;
 	Properties properties = new Properties();
 	FileInputStream ip;
-	
-	@FindBy (xpath = "//input[@placeholder='Username']")
-	private WebElement userName;//Encapsulation
-	@FindBy (xpath = "//input[@placeholder='Password']")
+
+	@FindBy(xpath = "//input[@placeholder='Username']")
+	private WebElement userName;// Encapsulation
+	@FindBy(xpath = "//input[@placeholder='Password']")
 	private WebElement passwordField;
-	@FindBy (xpath = "//button[@class='btn btn-dark btn-block']")
+	@FindBy(xpath = "//button[@class='btn btn-dark btn-block']")
 	private WebElement signInButton;
-	@FindBy (xpath = "//label[@for='remember']")
+	@FindBy(xpath = "//label[@for='remember']")
 	WebElement checkboxDeclaration;
-		
+
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -35,37 +35,32 @@ public class LoginPage {
 			System.out.println("File not Found");
 		}
 	}
-		
-		public void enterUserName(String username)
-		{
-			userName.sendKeys(username);
-			
-		}
-		
-		public void enterPassword( String password)
-		{
-			passwordField.sendKeys(password);
-		}
-		
-		public void clickOnSignInButton()
-		{
-			signInButton.click();
-		}
-		
-		public void login()
-		{
-			String username=properties.getProperty("username");
-			String password=properties.getProperty("password");
-			enterUserName(username);
-			enterPassword(password);
-			clickOnSignInButton();
-		}
-		public void login(String username,String password)
-		{
-			enterUserName(username);
-			enterPassword(password);
-			clickOnSignInButton();
-		}
-	
+
+	public void enterUserName(String username) {
+		userName.sendKeys(username);
+
+	}
+
+	public void enterPassword(String password) {
+		passwordField.sendKeys(password);
+	}
+
+	public void clickOnSignInButton() {
+		signInButton.click();
+	}
+
+	public void login() {
+		String username = properties.getProperty("username");
+		String password = properties.getProperty("password");
+		enterUserName(username);
+		enterPassword(password);
+		clickOnSignInButton();
+	}
+
+	public void login(String username, String password) {
+		enterUserName(username);
+		enterPassword(password);
+		clickOnSignInButton();
+	}
 
 }

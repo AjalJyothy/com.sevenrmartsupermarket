@@ -1,5 +1,6 @@
 package com.sevenrmartsupermarket.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.sevenrmartsupermarket.base.Base;
@@ -18,7 +19,9 @@ public class ManageOrdersTest extends Base{
 		manageorderpage =new ManageOrdersPage(driver);
 		loginpage.login();
 		manageorderpage.clickOnManageOrderPage();
-		manageorderpage.changeOrderStatus("288","Paid");
+		manageorderpage.changeOrderStatus("296","Paid");
+		String expectedStatus="PAID";
+		Assert.assertEquals(expectedStatus,manageorderpage.statusUpdateCheck(),"Status Update Failed" );
 	}
 	
 
