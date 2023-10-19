@@ -18,88 +18,87 @@ public class AdminUsersPage {
 	PageUtility pageutility;
 	WaitUtility waitutility;
 	GeneralUtility generalutility;
-	
+
 	@FindBy(xpath = "//i[@class='nav-icon fas fa-users']")
 	private WebElement adminUsersLink;
-	@FindBy (xpath = "//a[@class='btn btn-rounded btn-danger']")
+	@FindBy(xpath = "//a[@class='btn btn-rounded btn-danger']")
 	private WebElement newButton;
-	@FindBy (xpath = "//input[@id='username']")
+	@FindBy(xpath = "//input[@id='username']")
 	private WebElement usernameField;
-	@FindBy (xpath = "//input[@id='password']")
+	@FindBy(xpath = "//input[@id='password']")
 	private WebElement passwordField;
-	@FindBy (xpath = "//select[@id='user_type']")
+	@FindBy(xpath = "//select[@id='user_type']")
 	private WebElement userTypeSelection;
-	@FindBy (xpath = "//i[@class='fa fa-save']")
+	@FindBy(xpath = "//i[@class='fa fa-save']")
 	private WebElement saveButton;
-	@FindBy (xpath = "//table[@class='table table-bordered table-hover table-sm']//tbody//tr//td[1]")
+	@FindBy(xpath = "//table[@class='table table-bordered table-hover table-sm']//tbody//tr//td[1]")
 	private List<WebElement> namesList;
-	@FindBy (xpath = "//a[@data-toggle='dropdown']")
+	@FindBy(xpath = "//a[@data-toggle='dropdown']")
 	private WebElement userNameDropDown;
-	@FindBy (xpath = "//i[@class='ace-icon fa fa-power-off']")
+	@FindBy(xpath = "//i[@class='ace-icon fa fa-power-off']")
 	private WebElement logOut;
-	
-	
-	public AdminUsersPage(WebDriver driver)
-	{
-		this.driver=driver;
-		PageFactory.initElements(driver,this);
+
+	public AdminUsersPage(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
 	}
-	public void clickOnAdminUsersPage()
-	{
+
+	public void clickOnAdminUsersPage() {
 		adminUsersLink.click();
 	}
-	public void adminUsersNewButtonClick()
-	{
+
+	public void adminUsersNewButtonClick() {
 		newButton.click();
 	}
-	public void enterUserName(String username)
-	{
-		usernameField.sendKeys(username);;
+
+	public void enterUserName(String username) {
+		usernameField.sendKeys(username);
+		;
 	}
-	public void enterPassword(String password)
-	{
+
+	public void enterPassword(String password) {
 		passwordField.sendKeys(password);
 	}
-	public void selectUserType(String usertype)
-	{
-		pageutility=new PageUtility(driver);
+
+	public void selectUserType(String usertype) {
+		pageutility = new PageUtility(driver);
 		pageutility.select_ByVisibleText(userTypeSelection, usertype);
 	}
-	public void clickOnSaveButton()
-	{
+
+	public void clickOnSaveButton() {
 		saveButton.click();
 	}
-	public void newAdminUserCreation(String username,String password,String usertype)
-	{
+
+	public void newAdminUserCreation(String username, String password, String usertype) {
 		adminUsersNewButtonClick();
 		enterUserName(username);
 		enterPassword(password);
 		selectUserType(usertype);
-		waitutility=new WaitUtility(driver);
+		waitutility = new WaitUtility(driver);
 		waitutility.waitForElementToBeClickable(saveButton, 10);
 		clickOnSaveButton();
+
 	}
-	
-	public void deactivateUser(String personName)
-	{
-		int index=0;
-		generalutility=new GeneralUtility();
-		pageutility=new PageUtility(driver);
-		List<String>names=new ArrayList();
-		names=generalutility.getTextOfElements(namesList);
-		for(String name:names)
-		{
-			if(personName.equals(name))
-			{
+
+	public void deactivateUser(String personName) {
+		int index = 0;
+		generalutility = new GeneralUtility();
+		pageutility = new PageUtility(driver);
+		List<String> names = new ArrayList();
+		names = generalutility.getTextOfElements(namesList);
+		for (String name : names) {
+			if (personName.equals(name)) {
 				index++;
 				break;
-			}index++;
+			}
+			index++;
 		}
-		WebElement deactivateButton=driver.findElement(By.xpath("//table[@class='table table-bordered table-hover table-sm']//tbody//tr["+index+"]//td[5]//a[1]"));
+		WebElement deactivateButton = driver.findElement(By.xpath(
+				"//table[@class='table table-bordered table-hover table-sm']//tbody//tr[" + index + "]//td[5]//a[1]"));
 		pageutility.scrollAndClick(deactivateButton);
 	}
-	public void logout()
-	{
+
+	public void logout() {
 		userNameDropDown.click();
 		logOut.click();
 	}
