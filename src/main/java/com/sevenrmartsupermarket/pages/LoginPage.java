@@ -16,7 +16,7 @@ public class LoginPage {
 	FileInputStream ip;
 
 	@FindBy(xpath = "//input[@placeholder='Username']")
-	private WebElement userName;// Encapsulation
+	private WebElement userName;
 	@FindBy(xpath = "//input[@placeholder='Password']")
 	private WebElement passwordField;
 	@FindBy(xpath = "//button[@class='btn btn-dark btn-block']")
