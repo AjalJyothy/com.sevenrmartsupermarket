@@ -40,11 +40,6 @@ public class ManageDeliveryBoyTest extends Base {
 		expected_search_result.add(phoneNumber);
 		Assert.assertEquals(managedeliveryboypage.SearchResult(), expected_search_result,"Member not found");		
 	}
-	@Test
-	public void verifyNewUserSearch() 
-	{
-		
-	}
 	
 	@Test
 	public void verifyDeliveryBoyStatusChangeOfMember()

@@ -48,18 +48,4 @@ public class AdminUsersTest extends Base {
 		adminuserspage.deactivateUser("Janaki");		
 	}
 	
-	@Test (groups = "Smoke Test")
-	public void verifyDeleteUser()
-	{
-		System.out.println(GeneralUtility.randomGetFullName());
-		System.out.println(GeneralUtility.getRandomStreeetAddress());
-		
-	}
-	
-	@Test(groups="Regression Test",dataProvider = "Grocery App",dataProviderClass = Constants.class)
-	public void verifyLogin(String username,String password)
-	{
-		System.out.println("username: "+username+" "+"password :"+password);
-	}
-	
 }
