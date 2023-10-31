@@ -34,7 +34,6 @@ public class Base {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("File not Found");
-
 		}
 
 	}
@@ -84,6 +83,6 @@ public class Base {
 		if (itestresult.getStatus() == ITestResult.FAILURE) {
 			screenshot.takeScreenshot(driver, itestresult.getName());
 		}
-		//driver.quit();
+		driver.quit();
 	}
 }

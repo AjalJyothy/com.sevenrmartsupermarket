@@ -19,9 +19,9 @@ public class ManageOrdersTest extends Base{
 		manageorderpage =new ManageOrdersPage(driver);
 		loginpage.login();
 		manageorderpage.clickOnManageOrderPage();
-		manageorderpage.changeOrderStatus("296","Paid");
+		manageorderpage.changeOrderStatus("285","Paid");
 		String expectedStatus="PAID";
-		Assert.assertEquals(expectedStatus,manageorderpage.statusUpdateCheck(),"Status Update Failed" );
+		Assert.assertEquals(expectedStatus,manageorderpage.statusUpdateCheck("285"),"Status Update Failed" );
 	}
 	
 

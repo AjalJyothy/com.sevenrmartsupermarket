@@ -24,10 +24,22 @@ public class ManageOrdersPage {
 	WaitUtility waitutility;
 
 	@FindBy(xpath = "//i[@class='nav-icon fas fa-shopping-basket']")
-	private WebElement manageOrdersPageLink;
-	@FindBy(xpath = "//table[@class='table table-bordered table-hover table-sm']//tbody//tr//td[1]")
-	private List<WebElement> orderIDList;	
-	int index = 0;
+	private WebElement manageOrdersPageLink;	
+	@FindBy(xpath = "//a[@class='btn btn-rounded btn-primary']")
+	private WebElement searchButton;
+	@FindBy(xpath = "(//input[@class='form-control'])[1]")
+	private WebElement orderIDField;
+	@FindBy(xpath = "//button[@class='btn btn-danger btn-fix']")
+	private WebElement searchPageSearchButton;
+	@FindBy(xpath = "//a[@class='btn btn-success btn-sm']")
+	private WebElement changeStatusButton;
+	@FindBy(xpath = "(//button[@class='btn btn-info'])[1]")
+	private WebElement updateButton;
+	@FindBy(xpath = "//table[@class='table table-bordered table-hover table-sm']//tbody//tr//td[6]//span")
+	private WebElement dispalyedStatus;
+	
+	
+	
 
 	public ManageOrdersPage(WebDriver driver) {
 		this.driver = driver;
@@ -43,40 +55,24 @@ public class ManageOrdersPage {
 		generalutility = new GeneralUtility();
 		pageutiliy=new PageUtility(driver);
 		waitutility=new WaitUtility(driver);
-		List<String> orderIDs = new ArrayList<String>();
-		orderIDs = generalutility.getTextOfElements(orderIDList);
-		for (String ID : orderIDs) {
-			if (orderID.equals(ID)) {
-				index++;
-				break;
-			}index++;
-		}
-		this.index=index;
-		WebElement changeStatusButton=driver.findElement(By.xpath("//table[@class='table table-bordered table-hover table-sm']//tbody//tr["+index+"]//td[6]//a[contains(text(),'Change Status')]"));
+		searchInList(orderID);
 		pageutiliy.scrollAndClick(changeStatusButton);
 		WebElement statusDropDown=driver.findElement(By.xpath("//select[@onchange='show_cancel("+orderID+")']"));
 		pageutiliy.select_ByVisibleText(statusDropDown, status);
-		/*
-		if(index==1)
-		{
-			index=1;
-		}
-		else
-		{
-			index=index+6;
-		}
-		System.out.println(index);
-		WebElement updateStatusButton=driver.findElement(By.xpath("(//button[@name='Update_st'])["+index+"]"));
-		waitutility.waitForElementToBeClickable(updateStatusButton, 10);
-		updateStatusButton.click();
-		*/
-		
+		updateButton.click();
+	}
+	
+	public void searchInList(String orderID)
+	{
+		searchButton.click();
+		orderIDField.sendKeys(orderID);
+		searchPageSearchButton.click();
 	}
 
-	public String statusUpdateCheck() {
+	public String statusUpdateCheck(String orderID) {
 		generalutility=new GeneralUtility();
-		WebElement updatedMessage=driver.findElement(By.xpath("(//table[@class='table table-bordered table-hover table-sm']//tbody//tr[\"+index+\"]//td[6]//span[@style='text-transform: uppercase;'])["+index+"]")); 
-		return generalutility.getTextOffElement(updatedMessage);
+		searchInList(orderID); 
+		return generalutility.getTextOffElement(dispalyedStatus);
 	}
 
 }

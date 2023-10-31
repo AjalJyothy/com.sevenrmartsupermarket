@@ -34,7 +34,7 @@ public class ExcelReader {
 	public String getCellData(int rowNo, int columnNo) {
 		row = sheet.getRow(rowNo);
 		cell = row.getCell(columnNo);
-		switch (cell.getCellType()) // detecting the type and returning it
+		switch (cell.getCellType()) 
 		{
 		case STRING: {
 			String data;

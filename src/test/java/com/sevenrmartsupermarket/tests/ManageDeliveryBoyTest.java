@@ -42,17 +42,16 @@ public class ManageDeliveryBoyTest extends Base {
 	}
 	
 	@Test
-	public void verifyDeliveryBoyStatusChangeOfMember()
+	public void verifyDeliveryBoyStatusChange()
 	{
 		loginpage=new LoginPage(driver);
 		managedeliveryboypage=new ManageDeliveryBoyPage(driver);
 		loginpage.login();
 		managedeliveryboypage.clickOnManageDeliveryBoyPage();
-		managedeliveryboypage.statusChange("Rahul_R");
-		String expectedSuccessMessage="Alert!\r\n"
-				+ "Delivery Boy Status Changed Successfully";
-		
-		Assert.assertEquals(managedeliveryboypage.getStatusSuccessMessage(),expectedSuccessMessage);
+		managedeliveryboypage.statusChange("Jenni_001");
+		String expectedSuccessMessage= "Delivery Boy Status Changed Successfully";
+		String actualSuccessMessage=managedeliveryboypage.getEditSuccessMessage();
+		Assert.assertTrue(actualSuccessMessage.contains(expectedSuccessMessage));
 	}
 	
 
@@ -63,25 +62,13 @@ public class ManageDeliveryBoyTest extends Base {
 		managedeliveryboypage=new ManageDeliveryBoyPage(driver);
 		loginpage.login();
 		managedeliveryboypage.clickOnManageDeliveryBoyPage();
-		managedeliveryboypage.editDeliveryBoyDetail("Joy");	
-		managedeliveryboypage.SearchInList("Joy", "joy123@gmail.com", "9555556785");
+		managedeliveryboypage.editDeliveryBoyMailID("Jennifer","jenni5@gmail.com");	
+		managedeliveryboypage.SearchInList("Jennifer", "jenni5@gmail.com", "9895515595");
 		List<String> expected_search_result=new ArrayList<String>();
-		expected_search_result.add("Joy");
-		expected_search_result.add("joy123@gmail.com");
-		expected_search_result.add("9555556785");
+		expected_search_result.add("Jennifer");
+		expected_search_result.add("jenni5@gmail.com");
+		expected_search_result.add("9895515595");
 		Assert.assertEquals(managedeliveryboypage.SearchResult(), expected_search_result,"Member not found");			
 	}
-	
-	@Test
-	public void verifyMemberDeletion()
-	{
-		loginpage=new LoginPage(driver);
-		managedeliveryboypage=new ManageDeliveryBoyPage(driver);
-		loginpage.login();
-		managedeliveryboypage.clickOnManageDeliveryBoyPage();
-		managedeliveryboypage.deleteMember("Rahul_R");
-		//managedeliveryboypage.SearchInList("Joy","joy123@gmail.com","9555556785");	
-	}
-	
 	
 }

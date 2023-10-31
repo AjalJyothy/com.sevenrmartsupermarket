@@ -175,7 +175,7 @@ public class ManageDeliveryBoyPage {
 		return generalutility.getTextOffElement(statusMessage); 
 	}
 	
-	public void editDeliveryBoyDetail(String memberName)
+	public void editDeliveryBoyMailID(String memberName,String editedmailID)
 	{
 		pageutility=new PageUtility(driver);
 		int index=0;
@@ -194,7 +194,7 @@ public class ManageDeliveryBoyPage {
 		WebElement editButton=driver.findElement(By.xpath("(//table[@class='table table-bordered table-hover table-sm']//tbody//tr["+index+"]//td[8] //i)[1]"));
 		editButton.click();
 		mailIDField.clear();
-		mailIDField.sendKeys("joy123@gmail.com");
+		mailIDField.sendKeys(editedmailID);
 		pageutility.scrollAndClick(saveButton);
 	}
 	public String getEditSuccessMessage()
@@ -220,15 +220,8 @@ public class ManageDeliveryBoyPage {
 		}
 		System.out.println(index);
 		WebElement deleteButton=driver.findElement(By.xpath("(//table[@class='table table-bordered table-hover table-sm']//tbody//tr["+index+"]//td[8]//i)[2]"));
-		pageutility.scrollAndClick(deleteButton);
+		deleteButton.click();
 		pageutility.acceptAlert();
 	}
 }
-
-
-
-
-	
-
-
 
