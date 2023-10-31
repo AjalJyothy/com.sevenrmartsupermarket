@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WaitUtility {
@@ -33,9 +35,11 @@ public class WaitUtility {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitTime));
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
 	}
-	public void ImplicitWait()
+	public void fluentWaitforElementToBeVisible(By locator, long waitTime,long pollTime)
 	{
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT));
+
+		Wait wait = new FluentWait(driver).withTimeout(Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofSeconds(pollTime)).ignoring(Exception.class);
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
 	}
 
 }

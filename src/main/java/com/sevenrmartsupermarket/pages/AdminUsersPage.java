@@ -80,26 +80,9 @@ public class AdminUsersPage {
 
 	}
 
-	public void deactivateUser(String personName) {
-		int index = 0;
-		generalutility = new GeneralUtility();
-		pageutility = new PageUtility(driver);
-		List<String> names = new ArrayList();
-		names = generalutility.getTextOfElements(namesList);
-		for (String name : names) {
-			if (personName.equals(name)) {
-				index++;
-				break;
-			}
-			index++;
-		}
-		WebElement deactivateButton = driver.findElement(By.xpath(
-				"//table[@class='table table-bordered table-hover table-sm']//tbody//tr[" + index + "]//td[5]//a[1]"));
-		pageutility.scrollAndClick(deactivateButton);
-	}
-
 	public void logout() {
 		userNameDropDown.click();
 		logOut.click();
 	}
+	
 }

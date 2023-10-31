@@ -1,7 +1,9 @@
 package com.sevenrmartsupermarket.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.github.dockerjava.api.command.InspectExecResponse.Container;
 import com.sevenrmartsupermarket.base.Base;
 import com.sevenrmartsupermarket.pages.LoginPage;
 import com.sevenrmartsupermarket.pages.PushNotificationPage;
@@ -24,6 +26,9 @@ public class PushNotificationTest extends Base {
 		String title=excelreader.getCellData(0, 0);
 		String description=excelreader.getCellData(1, 0);
 		pushnotificationpage.sendNotification(title, description);
+		String expectedMessage="Message send successfully";
+		String actualSuccessMessage=pushnotificationpage.checkSuccessMessage();
+		Assert.assertTrue(actualSuccessMessage.contains(expectedMessage));
 	}
 	
 	

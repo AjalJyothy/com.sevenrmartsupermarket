@@ -39,13 +39,5 @@ public class AdminUsersTest extends Base {
 		Assert.assertEquals(actualProfileName,expectedProfileName,"Profile Name mismatch");
 
 	}
-	@Test(groups="Sanity Test")
-	public void verifyUserDeactivation() {
-		loginpage = new LoginPage(driver);
-		adminuserspage = new AdminUsersPage(driver);
-		loginpage.login();
-		adminuserspage.clickOnAdminUsersPage();
-		adminuserspage.deactivateUser("Janaki");		
-	}
 	
 }

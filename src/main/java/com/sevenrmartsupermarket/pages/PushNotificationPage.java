@@ -7,9 +7,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.sevenrmartsupermarket.utilities.ExcelReader;
+import com.sevenrmartsupermarket.utilities.GeneralUtility;
 
 public class PushNotificationPage {
 	WebDriver driver;
+	GeneralUtility generalutility;
 	
 	@FindBy (xpath = "//p[text()='Push Notifications']")
 	WebElement pushNotificationLink;
@@ -19,6 +21,8 @@ public class PushNotificationPage {
 	WebElement description_field;
 	@FindBy(xpath = "//button[@type='submit']")
 	WebElement send_button;
+	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
+	WebElement successMessage;
 	
 		public PushNotificationPage(WebDriver driver)
 		{
@@ -46,6 +50,12 @@ public class PushNotificationPage {
 			enterTitle(title);
 			enterDescription(description);
 			clickOnSendButton();
+		}
+		public String checkSuccessMessage()
+		{
+			generalutility=new GeneralUtility();
+			return generalutility.getTextOffElement(successMessage);
+			
 		}
 
 }
